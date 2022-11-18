@@ -1,0 +1,136 @@
+.wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgb(89, 182, 219);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+
+.card {
+  width: 144px;
+  height: 209px;
+  cursor: pointer;
+  //border: 2px solid rgb(49, 22, 100);
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  &:hover {
+    .front {
+      transform: rotateY(180deg);
+    }
+
+    .back {
+      transform: rotateY(360deg);
+    }
+  }
+
+  .front,
+  .back {
+    border: 2px solid black;
+    border-radius: 9px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease-in-out 0.7s;
+    backface-visibility: hidden;
+  }
+
+  .front {
+    background-image: url("../../img/back_cards.jpg");
+  }
+
+  .back {
+    background-color: white;
+    transform: rotateY(180deg);
+
+    &.king {
+      background-image: url("../../img/king-of-clubs.jpg");
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+
+    .suit::before {
+      content: "\2665";
+      position: absolute;
+      left: 7px;
+      top: 23px;
+      font-size: 44px;
+      color: red;
+    }
+
+    .king::before {
+      content: "\2663";
+      left: 1px;
+      top: 26px;
+      font-size: 30px;
+      color: black;
+    }
+
+    .suit-mirror::before {
+      transform: rotate(180deg);
+      bottom: 23px;
+      right: 7px;
+    }
+
+    .suit-mirror.king::before {
+      bottom: 26px;
+      right: 1px;
+    }
+
+    .suit::after {
+      content: "A";
+      position: absolute;
+      left: 9px;
+      top: 2px;
+      font-size: 30px;
+      font-weight: 700;
+      color: red;
+      border: none;
+    }
+
+    .king::after {
+      content: "K";
+      left: 1px;
+      top: 7px;
+      font-size: 24px;
+      color: black;
+    }
+
+    .suit-mirror::after {
+      transform: rotate(180deg);
+      bottom: 2px;
+      right: 9px;
+    }
+
+    .suit-mirror.king::after {
+      bottom: 9px;
+      right: 1px;
+    }
+
+    .suit-center::before {
+      content: "\2665";
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      font-size: 74px;
+      color: red;
+    }
+  }
+}
